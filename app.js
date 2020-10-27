@@ -84,7 +84,7 @@ function searchByTrait(people){
   
   let result = [];
    var input = promptFor("Please enter: \n1 Gender \n2 Date of birth \n3 Height \n4 Weight \n5 Eye Color \n 6 Occupation",int);
-   switch(input){
+   switch(parseInt(input)){
     case 1:
       people = searchByGender(people);
       break;
@@ -105,7 +105,7 @@ function searchByTrait(people){
       break;
     default:
       alert("Please try again.");
-      return searchByTrait(people);
+      break;
       
    }
   return people;
@@ -199,10 +199,10 @@ function searchByHeight(people)
 
 function searchByWeight(people)
 {
-  let height = promptFor("What is the person's weight in inches?",int)
+  let weight = promptFor("What is the person's weight in inches?",int)
       let foundPerson = people.filter(function(person)
       {
-        if(person.weight == weight)
+        if(person.weight == parseInt(weight))
           {
           return true;
           }
@@ -318,5 +318,6 @@ function chars(input){
   return typeof input == "string"|| input == "";
 }
 function int(input){
-  return typeof input == "number"|| input == ""; 
+
+ return !isNaN(parseInt(input)|| input == "");
 }
