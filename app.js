@@ -20,11 +20,11 @@ function app(people){
           break;
         case 'no':
           searchByTraits(people);
+          break;
         }
-      app(people)
       break;
       default:
-    app(people); // restart app
+        app(people); // restart app
       break;
   }
   
@@ -108,7 +108,7 @@ function searchByTrait(people){
       break;
       
    }
-  return people;
+  return displayPeople(people);
 }
 function searchByTraits(people){
   let gender = promptFor("What is the person's gender?", chars);
@@ -218,7 +218,7 @@ function searchByOccupation(people){
   var input = promptFor("Select the person's occupation?\n1 Programmer\n2 Assistant\n3 Landscaper\n4 Nurse\n5 Student\n6 Architect\n7 Doctor\n8 Politician",int);
   var searchOccupation;
 
-  switch(input){
+  switch(parseInt(input)){
     case 1:
       searchOccupation = "programmer";//
       break;
@@ -247,11 +247,10 @@ function searchByOccupation(people){
     default:
       alert("Please try again.");
       return searchByOccupation(people);
-    
-
   }
   let results = people.filter(function(el){
-    return el.occupation === searchOccupation
+    
+    return el.occupation === searchOccupation;
   });
    console.log(results);
 
