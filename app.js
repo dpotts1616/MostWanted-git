@@ -13,7 +13,13 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
-      searchByTraits(people);
+      let choice = promptFor("Would you like to search by only a single trait?Enter 'yes' or 'no'", yesNo).toLowerCase();
+        if (choice === yes){
+          searchByTrait(people);
+        }
+        else{
+          searchByTraits(people);
+        }
       app(people)
       break;
       default:
