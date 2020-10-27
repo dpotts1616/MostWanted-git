@@ -258,13 +258,15 @@ function displayPeople(people){
 function displayPeopleTest(people){
   let i=0;
   let continueLoop = true;
-  while(people[i]&&continueLoop)
-    let userResopnce = promptFor("Is "+people[i].firstName + " " + people[i].lastName+" the right person? Enter 'yes' or 'no'", yesNo).toLowerCase();
+
+  while(people[i]&&continueLoop){
+    let userResopnce = promptFor("Is " + people[i].firstName + " " + people[i].lastName + " the right person? Enter 'yes' or 'no'", yesNo).toLowerCase();
     if(userResopnce== "yes"){
         continueLoop = false;
         displayPerson(people[i]);
     }
-    i++
+    i++;
+  }
 }
  
  
