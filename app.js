@@ -298,8 +298,8 @@ function yesNo(input){
 
 // helper function to pass in as default promptFor validation
 function chars(input){
-  return typeof input == "string";
+  return typeof input == "string"|| input == "";
 }
 function int(input){
-  return typeof input == "number"; 
+  return typeof input == "number"|| input == ""; 
 }
