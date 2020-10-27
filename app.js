@@ -13,6 +13,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
+      searchByTraits(people);
       break;
       default:
     app(people); // restart app
@@ -68,7 +69,77 @@ function searchByName(people){
     }
   })
   // TODO: find the person using the name they entered
-  return foundPerson;
+  return foundPerson[0];
+}
+
+function searchByTraits(people){
+  let gender = promptFor("What is the person's gender?", chars);
+  let dob = promptFor("What is the person's dob(mm/dd/yyyy)?", chars);
+  let height = promptFor("What is the person's height?", chars);
+  let weight = promptFor("What is the person's weight?", chars);
+  let eyeColor = promptFor("What is the person's eye color?", chars);
+  let occupation = promptFor("What is the person's occupation?", chars);
+
+  let foundPeople = people.filter(function(person){
+    if(person.gender === gender || gender == null
+      && person.dob === dob 
+      && person.height === height
+      && person.weight === weight 
+      && person.eyeColor === eyeColor
+      && person.occupation === occupation){
+        return true;
+      }
+      else{
+        return false;
+      }
+  })
+
+  displayPeople(foundPeople);
+}
+
+function searchByGender(people){
+  let gender = promptFor("What is the person's gender?", chars);
+
+  let foundPeople = people.filter(function(person){
+    if(person.gender === gender){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+
+  displayPeople(foundPeople);
+}
+
+function searchByDOB(people){
+  let dob = promptFor("What is the person's Date of Birth (mm/dd/yyyy)?", chars);
+
+  let foundPeople = people.filter(function(person){
+    if(person.dob === dob){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+
+  displayPeople(foundPeople);
+}
+
+function searchByEyeColor(people){
+  let eyeColor = promptFor("What is the person's eye color?", chars);
+
+  let foundPeople = people.filter(function(person){
+    if(person.eyeColor === eyeColor){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+
+  displayPeople(foundPeople);
 }
 
 // alerts a list of people
