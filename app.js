@@ -20,11 +20,11 @@ function app(people){
           break;
         case 'no':
           searchByTraits(people);
+          break;
         }
-      app(people)
       break;
       default:
-    app(people); // restart app
+        app(people); // restart app
       break;
   }
   
@@ -85,7 +85,7 @@ function searchByTrait(people){
   
   let result = [];
    var input = promptFor("Please enter: \n1 Gender \n2 Date of birth \n3 Height \n4 Weight \n5 Eye Color \n 6 Occupation",int);
-   switch(input){
+   switch(parseInt(input)){
     case 1:
       people = searchByGender(people);
       break;
@@ -106,10 +106,10 @@ function searchByTrait(people){
       break;
     default:
       alert("Please try again.");
-      return searchByTrait(people);
+      break;
       
    }
-  return people;
+  return displayPeople(people);
 }
 function searchByTraits(people){
   let gender = promptFor("What is the person's gender?", chars);
@@ -200,10 +200,10 @@ function searchByHeight(people)
 
 function searchByWeight(people)
 {
-  let height = promptFor("What is the person's weight in inches?",int)
+  let weight = promptFor("What is the person's weight in inches?",int)
       let foundPerson = people.filter(function(person)
       {
-        if(person.weight == weight)
+        if(person.weight == parseInt(weight))
           {
           return true;
           }
@@ -219,7 +219,7 @@ function searchByOccupation(people){
   var input = promptFor("Select the person's occupation?\n1 Programmer\n2 Assistant\n3 Landscaper\n4 Nurse\n5 Student\n6 Architect\n7 Doctor\n8 Politician",int);
   var searchOccupation;
 
-  switch(input){
+  switch(parseInt(input)){
     case 1:
       searchOccupation = "programmer";//
       break;
@@ -248,11 +248,10 @@ function searchByOccupation(people){
     default:
       alert("Please try again.");
       return searchByOccupation(people);
-    
-
   }
   let results = people.filter(function(el){
-    return el.occupation === searchOccupation
+    
+    return el.occupation === searchOccupation;
   });
    console.log(results);
 
@@ -338,8 +337,9 @@ function yesNo(input){
 
 // helper function to pass in as default promptFor validation
 function chars(input){
-  return typeof input == "string";
+  return typeof input == "string"|| input == "";
 }
 function int(input){
-  return typeof input == "int"; 
+
+ return !isNaN(parseInt(input)|| input == "");
 }
