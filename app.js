@@ -54,6 +54,7 @@ function mainMenu(person, people){
     break;
     case "descendants":
     // TODO: get person's descendants
+    getDescendants(person,people);
     break;
     case "restart":
     app(people); // restart
@@ -264,6 +265,7 @@ function displayPeople(people){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
+
 function displayPeopleTest(people){
   let i=0;
   let continueLoop = true;
@@ -279,8 +281,29 @@ function displayPeopleTest(people){
 }
  
  
+function getDescendants(person, people){
+  let descendants = people.filter(function(descendant){
+    if(descendant.parents[0] === person.id || descendant.parents[1] === person.id){
+        getDescendants(descendant, people);
+        return true;
+    }
+  })
+  displayPeople(descendants);
+}
 
+// function searchByGender(people){
+//   let gender = promptFor("What is the person's gender?", chars);
+//   let foundPeople = people.filter(function(person){
+//     if(person.gender === gender){
+//       return true;
+//     }
+//     else{
+//       return false;
+//     }
+//   })
 
+//   return foundPeople;
+// }
 
 
 function displayPerson(person){
@@ -318,5 +341,5 @@ function chars(input){
   return typeof input == "string";
 }
 function int(input){
-  return typeof input == "number"; 
+  return typeof input == "int"; 
 }
