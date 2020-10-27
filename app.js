@@ -73,7 +73,36 @@ function searchByName(people){
   // TODO: find the person using the name they entered
   return foundPerson[0];
 }
-
+function searchByTrait(people){
+  
+  let result = [];
+   var input = promptFor("Please enter: \n1 Gender \n2 Date of birth \n3 Height \n4 Weight \n5 Eye Color \n 6 Occupation",int);
+   switch(input){
+    case 1:
+      people = searchByGender(people);
+      break;
+    case 2:
+      people = searchByDOB(people);
+      break;
+    case 3:
+      people = searchByHeight(people);
+      break;
+    case 4:
+      people = searchByWeight(people);
+      break;
+    case 5:
+      people = searchByEyeColor(people);
+      break;
+    case 6:
+      people = searchByOccupation(people);
+      break;
+    default:
+      alert("Please try again.");
+      return searchByTrait(people);
+      
+   }
+  return people;
+}
 function searchByTraits(people){
   let gender = promptFor("What is the person's gender?", chars);
   let dob = promptFor("What is the person's dob(mm/dd/yyyy)?", chars);
@@ -211,7 +240,7 @@ function searchByOccupation(people){
     default:
       alert("Please try again.");
       return searchByOccupation(people);
-      break;
+    
 
   }
   let results = people.filter(function(el){
@@ -222,12 +251,30 @@ function searchByOccupation(people){
    return results;
 
 }
-// alerts a list of people
+// alerts a list of people 
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
+function displayPeopleTest(people){
+  let i=0;
+  let continueLoop = true;
+
+  while(people[i]&&continueLoop){
+    let userResopnce = promptFor("Is " + people[i].firstName + " " + people[i].lastName + " the right person? Enter 'yes' or 'no'", yesNo).toLowerCase();
+    if(userResopnce== "yes"){
+        continueLoop = false;
+        displayPerson(people[i]);
+    }
+    i++;
+  }
+}
+ 
+ 
+
+
+
 
 function displayPerson(person){
   // print all of the information about a person:
@@ -261,8 +308,8 @@ function yesNo(input){
 
 // helper function to pass in as default promptFor validation
 function chars(input){
-  return true; // default validation only
+  return typeof input == "string";
 }
 function int(input){
-  return true; // default validation only
+  return typeof input == "number"; 
 }
