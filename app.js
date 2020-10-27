@@ -71,6 +71,84 @@ function searchByName(people){
   return foundPerson;
 }
 
+function searchByHeight(people)
+{
+  let height = promptFor("What is the person's height in inches?",int)
+      let foundPerson = people.filter(function(person)
+      {
+        if(person.height == height)
+          {
+          return true;
+          }
+        else
+          {
+            return false;
+          }
+      })
+    return foundPerson;
+}
+
+function searchByWeight(people)
+{
+  let height = promptFor("What is the person's weight in inches?",int)
+      let foundPerson = people.filter(function(person)
+      {
+        if(person.weight == weight)
+          {
+          return true;
+          }
+        else
+          {
+            return false;
+          }
+      })
+    return foundPerson;
+}
+
+function searchByOccupation(people){
+  var input = promptFor("Select the person's occupation?\n1 Programmer\n2 Assistant\n3 Landscaper\n4 Nurse\n5 Student\n6 Architect\n7 Doctor\n8 Politician",int);
+  var searchOccupation;
+
+  switch(input){
+    case 1:
+      searchOccupation = "programmer";//
+      break;
+    case 2:
+      searchOccupation = "assistant";//
+      break;
+    case 3:
+      searchOccupation = "landscaper";//
+      break;
+    case 4:
+      searchOccupation = "nurse";//
+      break;
+    case 5:
+      searchOccupation = "student";//
+      break;
+    case 6:  
+      searchOccupation = "architect";//
+      break;
+    case 7:
+      searchOccupation = "doctor";//
+      break;
+    case 8:
+      searchOccupation = "politician";//
+      break;  
+
+    default:
+      alert("Please try again.");
+      return searchByOccupation(people);
+      break;
+
+  }
+  let results = people.filter(function(el){
+    return el.occupation === searchOccupation
+  });
+   console.log(results);
+
+   return results;
+
+}
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
@@ -102,5 +180,8 @@ function yesNo(input){
 
 // helper function to pass in as default promptFor validation
 function chars(input){
+  return true; // default validation only
+}
+function int(input){
   return true; // default validation only
 }
