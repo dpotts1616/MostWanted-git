@@ -115,12 +115,12 @@ function searchByTrait(people){
 }
 
 function searchByTraits(people){
-  let gender = promptFor("What is the person's gender? Press Enter to skip.", chars);
+  let gender = promptFor("What is the person's gender?\nMale \nFemale\n Press Enter to skip.", chars);
   let dob = promptFor("What is the person's dob(mm/dd/yyyy)? Press Enter to skip.", chars);
   let height = promptFor("What is the person's height? Press Enter to skip.", int);
   let weight = promptFor("What is the person's weight? Press Enter to skip.", int);
-  let eyeColor = promptFor("What is the person's eye color? Press Enter to skip.", chars);
-  let occupation = promptFor("What is the person's occupation? Press Enter to skip.", chars);
+  let eyeColor = promptFor("What is the person's eye color?\nBrown \nBlue \nGreen\n Press Enter to skip.", chars);
+  let occupation = promptFor("What is the person's occupation?\nProgrammer\nAssistant\nLandscaper\nNurse\nStudent\nArchitect\nDoctor\nPolitician\n Press Enter to skip.", chars);
 
   let foundPeople = people.filter(function(person){
     if((person.gender === gender || gender == null)
