@@ -6,7 +6,7 @@ Build all of your functions for displaying and gathering information below (GUI)
 // app is the function called to start the entire application
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
-  let searchResults;
+  let searchResults = null;
   switch(searchType){
     case 'yes':
       searchResults = searchByName(people);
@@ -29,7 +29,12 @@ function app(people){
   }
   
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  mainMenu(searchResults, people);
+  if (searchResults !== null){
+    mainMenu(searchResults, people);
+  }
+  else{
+    app(people)
+  }
 }
 
 // Menu function to call once you find who you are looking for
@@ -227,43 +232,9 @@ function searchByWeight(people)
 }
 
 function searchByOccupation(people){
-  var input = promptFor("Select the person's occupation?\n1 Programmer\n2 Assistant\n3 Landscaper\n4 Nurse\n5 Student\n6 Architect\n7 Doctor\n8 Politician",int);
-  var searchOccupation;
-
-  switch(input){
-    case 1:
-      searchOccupation = "programmer";//
-      break;
-    case 2:
-      searchOccupation = "assistant";//
-      break;
-    case 3:
-      searchOccupation = "landscaper";//
-      break;
-    case 4:
-      searchOccupation = "nurse";//
-      break;
-    case 5:
-      searchOccupation = "student";//
-      break;
-    case 6:  
-      searchOccupation = "architect";//
-      break;
-    case 7:
-      searchOccupation = "doctor";//
-      break;
-    case 8:
-      searchOccupation = "politician";//
-      break;  
-    case null:
-      searchOccupation = null;
-      break;
-    default:
-      alert("Please try again.");
-      return searchByOccupation(people);
-  }
+  var input = promptFor("Select the person's occupation?\nProgrammer\nAssistant\nLandscaper\nNurse\nStudent\nArchitect\nDoctor\nPolitician",chars);
   let results = people.filter(function(el){
-    if(el.occupation === searchOccupation || searchOccupation == null){
+    if(el.occupation === input || input == null){
     return true;
     }
     else{
@@ -275,6 +246,7 @@ function searchByOccupation(people){
    return results;
 
 }
+
 // alerts a list of people 
 function displayPeople(people){
   alert(people.map(function(person){
@@ -282,6 +254,7 @@ function displayPeople(people){
   }).join("\n"));
   
 }
+
 function displaystring(string){
   alert(string.map(function(string){
     return string;
