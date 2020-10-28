@@ -73,7 +73,7 @@ function searchByName(people){
   let lastName = promptFor("What is the person's last name?", chars);
 
   let foundPerson = people.filter(function(person){
-    if(person.firstName === firstName && person.lastName === lastName){
+    if(person.firstName.toLowerCase() === firstName && person.lastName.toLowerCase() === lastName){
       return true;
     }
     else{
@@ -277,25 +277,13 @@ function choosePerson(people){
     let userResopnce = promptFor("Is " + people[i].firstName + " " + people[i].lastName + " the right person? Enter 'yes' or 'no'", yesNo).toLowerCase();
     if(userResopnce== "yes"){
         continueLoop = false;
-        displayPerson(people[i]);
+        mainMenu(people[i],people);
     }
     i++;
   }
 }
  
  
-// function getDescendants(person, people){
-//   let descendants = [];
-//   descendants.concat(people.filter(function(descendant){
-//     if(descendant.parents.includes(person.id)){
-//         let recursiveDescendants = getDescendants(descendant, people);
-//         descendants.concat(recursiveDescendants);
-//         return true;
-//     }
-//     return false;
-//   }))
-//   return (descendants);
-// }
 
 function getDescendants(person, people){
  let allDescendants = [];
@@ -315,6 +303,7 @@ function getDescendants(person, people){
 }
  displayPeople(allDescendants);
 }
+
 
 function getFamily(person, people) {
 
@@ -384,7 +373,7 @@ function promptFor(question, valid){
       return null
     }
   } while(!response || !valid(response));
-  return response;
+  return response.toLowerCase();
 }
 
 // helper function to pass into promptFor to validate yes/no answers
