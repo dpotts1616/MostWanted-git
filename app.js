@@ -13,7 +13,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
-      let choice = promptFor("Would you like to search by only a single trait?Enter 'yes' or 'no'", yesNo).toLowerCase();
+      let choice = promptFor("Would you like to search by only a single trait? Enter 'yes' or 'no'", yesNo).toLowerCase();
         switch(choice){
         case 'yes':
           searchByTrait(people);
@@ -115,12 +115,12 @@ function searchByTrait(people){
 }
 
 function searchByTraits(people){
-  let gender = promptFor("What is the person's gender?", chars);
-  let dob = promptFor("What is the person's dob(mm/dd/yyyy)?", chars);
-  let height = promptFor("What is the person's height?", chars);
-  let weight = promptFor("What is the person's weight?", chars);
-  let eyeColor = promptFor("What is the person's eye color?", chars);
-  let occupation = promptFor("What is the person's occupation?", chars);
+  let gender = promptFor("What is the person's gender? Press Enter to skip.", chars);
+  let dob = promptFor("What is the person's dob(mm/dd/yyyy)? Press Enter to skip.", chars);
+  let height = promptFor("What is the person's height? Press Enter to skip.", chars);
+  let weight = promptFor("What is the person's weight? Press Enter to skip.", chars);
+  let eyeColor = promptFor("What is the person's eye color? Press Enter to skip.", chars);
+  let occupation = promptFor("What is the person's occupation? Press Enter to skip.", chars);
 
   let foundPeople = people.filter(function(person){
     if((person.gender === gender || gender == null)
