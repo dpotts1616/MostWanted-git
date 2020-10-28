@@ -51,6 +51,7 @@ function mainMenu(person, people){
     break;
     case "family":
     // TODO: get person's family
+    getFamily(person,people);
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -112,6 +113,7 @@ function searchByTrait(people){
    }
   return displayPeople(people);
 }
+
 function searchByTraits(people){
   let gender = promptFor("What is the person's gender?", chars);
   let dob = promptFor("What is the person's dob(mm/dd/yyyy)?", chars);
@@ -264,9 +266,10 @@ function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
+  choosePerson(people);
 }
 
-function displayPeopleTest(people){
+function choosePerson(people){
   let i=0;
   let continueLoop = true;
 
@@ -313,6 +316,50 @@ function getDescendants(person, people){
  displayPeople(allDescendants);
 }
 
+function getFamily(person, people) {
+
+	let getSpouse = people.filter(function (p) {
+	  if(person.currentSpouse === p.id) {
+			return true;
+		}	
+ });
+  
+  let getParent = people.filter(function (p) {
+		if(person.parents[0] === p.id || person.parents[1] === p.id) {
+			return true;
+		}
+  });
+  
+  let getChild = people.filter(function (p) {
+		if(person.id === p.parents[0] || person.id === p.parents[1] ) {
+			return true;
+		}
+  });
+
+  let getSibling = people.filter (function (p) {
+    if(person.parents[0] === p.parents[0] || person.parents[0] === p.parents[1] 
+      || person.parents[1] === p.parents[0] || person.parents[1] === p.parents[1]){
+				return true;
+			}
+    });
+    
+    
+  let familyArray =familyArrayString(getSpouse,"Spouse").concat(familyArrayString(getParent,"Parent"),familyArrayString(getChild,"Child"),familyArrayString(getSibling,"Sibling"));
+  displayPeople(familyArray);
+  
+  
+}
+
+function familyArrayString(people,familyMember){
+  let i=0;
+  let result =[];
+  while(people[i]){
+    result.push(people[i]+" "+familyMember);
+    i++;
+  }
+  return result;
+
+}
 
 
 function displayPerson(person){
