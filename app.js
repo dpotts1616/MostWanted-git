@@ -179,7 +179,6 @@ function searchByDOB(people){
 
 function searchByEyeColor(people){
   let eyeColor = promptFor("What is the person's eye color?", chars);
-
   let foundPeople = people.filter(function(person){
     if(person.eyeColor === eyeColor || eyeColor == null){
       return true;
@@ -188,7 +187,6 @@ function searchByEyeColor(people){
       return false;
     }
   })
-
    return foundPeople;
 }
 
@@ -197,12 +195,10 @@ function searchByHeight(people)
   let height = promptFor("What is the person's height in inches?",int)
       let foundPerson = people.filter(function(person)
       {
-        if(person.height == height || height == null)
-          {
+        if(person.height == height || height == null){
           return true;
           }
-        else
-          {
+        else{
             return false;
           }
       })
@@ -214,12 +210,10 @@ function searchByWeight(people)
   let weight = promptFor("What is the person's weight in inches?",int)
       let foundPerson = people.filter(function(person)
       {
-        if(person.weight == parseInt(weight) || weight == null)
-          {
+        if(person.weight == parseInt(weight) || weight == null){
           return true;
           }
-        else
-          {
+        else{
             return false;
           }
       })
@@ -227,32 +221,32 @@ function searchByWeight(people)
 }
 
 function searchByOccupation(people){
-  var input = promptFor("Select the person's occupation?\n1 Programmer\n2 Assistant\n3 Landscaper\n4 Nurse\n5 Student\n6 Architect\n7 Doctor\n8 Politician",int);
+  var input = promptFor("Select the person's occupation?\nProgrammer\nAssistant\nLandscaper\nNurse\nStudent\nArchitect\nDoctor\nPolitician",chars);
   var searchOccupation;
 
   switch(input){
-    case 1:
+    case "1":
       searchOccupation = "programmer";//
       break;
-    case 2:
+    case "2":
       searchOccupation = "assistant";//
       break;
-    case 3:
+    case "3":
       searchOccupation = "landscaper";//
       break;
-    case 4:
+    case "4":
       searchOccupation = "nurse";//
       break;
-    case 5:
+    case "5":
       searchOccupation = "student";//
       break;
-    case 6:  
+    case "6":  
       searchOccupation = "architect";//
       break;
-    case 7:
+    case "7":
       searchOccupation = "doctor";//
       break;
-    case 8:
+    case "8":
       searchOccupation = "politician";//
       break;  
     case null:
@@ -280,13 +274,12 @@ function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
-  
+  choosePerson(people);
 }
 function displaystring(string){
   alert(string.map(function(string){
     return string;
   }).join("\n"));
-  
 }
 
 function choosePerson(people){
