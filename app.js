@@ -6,7 +6,7 @@ Build all of your functions for displaying and gathering information below (GUI)
 // app is the function called to start the entire application
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
-  let searchResults;
+  let searchResults = null;
   switch(searchType){
     case 'yes':
       searchResults = searchByName(people);
@@ -29,7 +29,12 @@ function app(people){
   }
   
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  mainMenu(searchResults, people);
+  if (searchResults !== null){
+    mainMenu(searchResults, people);
+  }
+  else{
+    app(people)
+  }
 }
 
 // Menu function to call once you find who you are looking for
@@ -222,6 +227,7 @@ function searchByWeight(people)
 
 function searchByOccupation(people){
   var input = promptFor("Select the person's occupation?\nProgrammer\nAssistant\nLandscaper\nNurse\nStudent\nArchitect\nDoctor\nPolitician",chars);
+<<<<<<< HEAD
   var searchOccupation;
 
   switch(input){
@@ -256,8 +262,10 @@ function searchByOccupation(people){
       alert("Please try again.");
       return searchByOccupation(people);
   }
+=======
+>>>>>>> 298cdbceacf24f747033af1ac2129607954ea831
   let results = people.filter(function(el){
-    if(el.occupation === searchOccupation || searchOccupation == null){
+    if(el.occupation === input || input == null){
     return true;
     }
     else{
@@ -269,6 +277,7 @@ function searchByOccupation(people){
    return results;
 
 }
+
 // alerts a list of people 
 function displayPeople(people){
   alert(people.map(function(person){
@@ -276,6 +285,7 @@ function displayPeople(people){
   }).join("\n"));
   choosePerson(people);
 }
+
 function displaystring(string){
   alert(string.map(function(string){
     return string;
