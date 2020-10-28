@@ -55,6 +55,7 @@ function mainMenu(person, people){
     case "descendants":
     // TODO: get person's descendants
     getDescendants(person,people);
+    app(people);
     break;
     case "restart":
     app(people); // restart
@@ -280,29 +281,38 @@ function displayPeopleTest(people){
 }
  
  
+// function getDescendants(person, people){
+//   let descendants = [];
+//   descendants.concat(people.filter(function(descendant){
+//     if(descendant.parents.includes(person.id)){
+//         let recursiveDescendants = getDescendants(descendant, people);
+//         descendants.concat(recursiveDescendants);
+//         return true;
+//     }
+//     return false;
+//   }))
+//   return (descendants);
+// }
+
 function getDescendants(person, people){
-  let descendants = people.filter(function(descendant){
-    if(descendant.parents[0] === person.id || descendant.parents[1] === person.id){
-        getDescendants(descendant, people);
-        return true;
-    }
-  })
-  displayPeople(descendants);
+ let allDescendants = [];
+  allDescendants = checkDescendants(person);
+ function checkDescendants(person){
+ let results = people.filter(function(descendant){
+   if (descendant.parents.includes(person.id)){
+     let recursiveDescendant = checkDescendants(descendant);
+     allDescendants.push(descendant);
+     return true;
+   }
+   else{
+     return false;
+   }
+ })
+ return allDescendants;
+}
+ displayPeople(allDescendants);
 }
 
-// function searchByGender(people){
-//   let gender = promptFor("What is the person's gender?", chars);
-//   let foundPeople = people.filter(function(person){
-//     if(person.gender === gender){
-//       return true;
-//     }
-//     else{
-//       return false;
-//     }
-//   })
-
-//   return foundPeople;
-// }
 
 
 function displayPerson(person){
