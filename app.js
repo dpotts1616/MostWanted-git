@@ -419,9 +419,8 @@ function yesNo(input){
 
 // helper function to pass in as default promptFor validation
 function chars(input){
-  return typeof input == "string"|| input == "";
+  return isNaN(input)|| input == "";
 }
 function int(input){
-
- return !isNaN(parseInt(input)|| input == "");
+ return !isNaN(input)|| input == "";
 }
