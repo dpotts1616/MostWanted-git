@@ -119,30 +119,6 @@ function searchByTrait(people){
   return displayPeople(people);
 }
 
-// function searchByTraits(people){
-//   let gender = promptFor("What is the person's gender? Press Enter to skip.", chars);
-//   let dob = promptFor("What is the person's dob(mm/dd/yyyy)? Press Enter to skip.", chars);
-//   let height = promptFor("What is the person's height? Press Enter to skip.", chars);
-//   let weight = promptFor("What is the person's weight? Press Enter to skip.", chars);
-//   let eyeColor = promptFor("What is the person's eye color? Press Enter to skip.", chars);
-//   let occupation = promptFor("What is the person's occupation? Press Enter to skip.", chars);
-
-//   let foundPeople = people.filter(function(person){
-//     if((person.gender === gender || gender == null)
-//       && (person.dob === dob || dob == null)
-//       && (person.height === height || height == null)
-//       && (person.weight === weight || weight == null)
-//       && (person.eyeColor === eyeColor || eyeColor == null)
-//       && (person.occupation === occupation || occupation == null)){
-//         return true;
-//       }
-//       else{
-//         return false;
-//       }
-//   })
-
-//   displayPeople(foundPeople);
-// }
 
 function searchByTraits(people){
   let gender = searchByGender(people);
