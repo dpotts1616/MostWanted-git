@@ -114,36 +114,48 @@ function searchByTrait(people){
   return displayPeople(people);
 }
 
+// function searchByTraits(people){
+//   let gender = promptFor("What is the person's gender? Press Enter to skip.", chars);
+//   let dob = promptFor("What is the person's dob(mm/dd/yyyy)? Press Enter to skip.", chars);
+//   let height = promptFor("What is the person's height? Press Enter to skip.", chars);
+//   let weight = promptFor("What is the person's weight? Press Enter to skip.", chars);
+//   let eyeColor = promptFor("What is the person's eye color? Press Enter to skip.", chars);
+//   let occupation = promptFor("What is the person's occupation? Press Enter to skip.", chars);
+
+//   let foundPeople = people.filter(function(person){
+//     if((person.gender === gender || gender == null)
+//       && (person.dob === dob || dob == null)
+//       && (person.height === height || height == null)
+//       && (person.weight === weight || weight == null)
+//       && (person.eyeColor === eyeColor || eyeColor == null)
+//       && (person.occupation === occupation || occupation == null)){
+//         return true;
+//       }
+//       else{
+//         return false;
+//       }
+//   })
+
+//   displayPeople(foundPeople);
+// }
+
 function searchByTraits(people){
-  let gender = promptFor("What is the person's gender?\nMale \nFemale\n Press Enter to skip.", chars);
-  let dob = promptFor("What is the person's dob(mm/dd/yyyy)? Press Enter to skip.", chars);
-  let height = promptFor("What is the person's height? Press Enter to skip.", int);
-  let weight = promptFor("What is the person's weight? Press Enter to skip.", int);
-  let eyeColor = promptFor("What is the person's eye color?\nBrown \nBlue \nGreen\n Press Enter to skip.", chars);
-  let occupation = promptFor("What is the person's occupation?\nProgrammer\nAssistant\nLandscaper\nNurse\nStudent\nArchitect\nDoctor\nPolitician\n Press Enter to skip.", chars);
+  let gender = searchByGender(people);
+  let dob = searchByDOB(gender);
+  let height = searchByHeight(dob);
+  let weight = searchByWeight(height);
+  let eyeColor = searchByEyeColor(weight);
+  let results = searchByOccupation(eyeColor);
 
-  let foundPeople = people.filter(function(person){
-    if((person.gender === gender || gender == null)
-      && (person.dob === dob || dob == null)
-      && (person.height === parseInt(height) || height == null)
-      && (person.weight === parseInt(weight) || weight == null)
-      && (person.eyeColor === eyeColor || eyeColor == null)
-      && (person.occupation === occupation || occupation == null)){
-        return true;
-      }
-      else{
-        return false;
-      }
-  })
-
-  displayPeople(foundPeople);
+  displayPeople(results);
 }
+
 
 function searchByGender(people){
   let gender = promptFor("What is the person's gender?", chars);
 
   let foundPeople = people.filter(function(person){
-    if(person.gender === gender){
+    if(person.gender === gender || gender == null){
       return true;
     }
   })
@@ -154,7 +166,7 @@ function searchByDOB(people){
   let dob = promptFor("What is the person's Date of Birth (mm/dd/yyyy)?", chars);
 
   let foundPeople = people.filter(function(person){
-    if(person.dob === dob){
+    if(person.dob === dob || dob == null){
       return true;
     }
     else{
@@ -169,7 +181,7 @@ function searchByEyeColor(people){
   let eyeColor = promptFor("What is the person's eye color?", chars);
 
   let foundPeople = people.filter(function(person){
-    if(person.eyeColor === eyeColor){
+    if(person.eyeColor === eyeColor || eyeColor == null){
       return true;
     }
     else{
@@ -185,7 +197,7 @@ function searchByHeight(people)
   let height = promptFor("What is the person's height in inches?",int)
       let foundPerson = people.filter(function(person)
       {
-        if(person.height == height)
+        if(person.height == height || height == null)
           {
           return true;
           }
@@ -202,7 +214,7 @@ function searchByWeight(people)
   let weight = promptFor("What is the person's weight in inches?",int)
       let foundPerson = people.filter(function(person)
       {
-        if(person.weight == parseInt(weight))
+        if(person.weight == parseInt(weight) || weight == null)
           {
           return true;
           }
@@ -218,7 +230,7 @@ function searchByOccupation(people){
   var input = promptFor("Select the person's occupation?\n1 Programmer\n2 Assistant\n3 Landscaper\n4 Nurse\n5 Student\n6 Architect\n7 Doctor\n8 Politician",int);
   var searchOccupation;
 
-  switch(parseInt(input)){
+  switch(input){
     case 1:
       searchOccupation = "programmer";//
       break;
@@ -243,14 +255,20 @@ function searchByOccupation(people){
     case 8:
       searchOccupation = "politician";//
       break;  
-
+    case null:
+      searchOccupation = null;
+      break;
     default:
       alert("Please try again.");
       return searchByOccupation(people);
   }
   let results = people.filter(function(el){
-    
-    return el.occupation === searchOccupation;
+    if(el.occupation === searchOccupation || searchOccupation == null){
+    return true;
+    }
+    else{
+      return false;
+    }
   });
    console.log(results);
 
