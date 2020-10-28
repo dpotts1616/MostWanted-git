@@ -203,43 +203,6 @@ function searchByWeight(people)
 
 function searchByOccupation(people){
   var input = promptFor("Select the person's occupation?\nProgrammer\nAssistant\nLandscaper\nNurse\nStudent\nArchitect\nDoctor\nPolitician",chars);
-<<<<<<< HEAD
-  var searchOccupation;
-
-  switch(input){
-    case "1":
-      searchOccupation = "programmer";//
-      break;
-    case "2":
-      searchOccupation = "assistant";//
-      break;
-    case "3":
-      searchOccupation = "landscaper";//
-      break;
-    case "4":
-      searchOccupation = "nurse";//
-      break;
-    case "5":
-      searchOccupation = "student";//
-      break;
-    case "6":  
-      searchOccupation = "architect";//
-      break;
-    case "7":
-      searchOccupation = "doctor";//
-      break;
-    case "8":
-      searchOccupation = "politician";//
-      break;  
-    case null:
-      searchOccupation = null;
-      break;
-    default:
-      alert("Please try again.");
-      return searchByOccupation(people);
-  }
-=======
->>>>>>> 298cdbceacf24f747033af1ac2129607954ea831
   let results = people.filter(function(el){
     if(el.occupation === input || input == null){
     return true;
